@@ -16,7 +16,7 @@ import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import com.deloitte.elrr.services.dto.PermissionDto;
-import com.deloitte.elrr.services.model.Action;
+import com.deloitte.elrr.entity.types.ActionType;
 
 import org.mockito.Mockito;
 import org.springframework.security.core.Authentication;
@@ -32,9 +32,9 @@ class JwtAuthenticationTokenTest {
     private DecodedJWT jwt;
     private List<PermissionDto> permissions = List.of(
             new PermissionDto("resource1", null,
-                    List.of(Action.READ, Action.UPDATE)),
+                    List.of(ActionType.READ, ActionType.UPDATE)),
             new PermissionDto("resource2", null,
-                    List.of(Action.CREATE, Action.DELETE)));
+                    List.of(ActionType.CREATE, ActionType.DELETE)));
 
     @BeforeEach
     void setUp() {
@@ -117,5 +117,16 @@ class JwtAuthenticationTokenTest {
     void testIsAuthenticated() {
         // Act & Assert
         assertTrue(jwtAuthToken.isAuthenticated());
+    }
+
+    @Test
+    void testGetJwtId() {
+        // Act
+        UUID jwtId = jwtAuthToken.getJwtId();
+
+        // Assert
+        assertNotNull(jwtId);
+        // The JWT ID should match what's in the token
+        assertEquals(jwt.getId(), jwtId.toString());
     }
 }

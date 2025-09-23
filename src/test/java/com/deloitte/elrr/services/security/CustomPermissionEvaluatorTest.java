@@ -14,7 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.deloitte.elrr.services.dto.PermissionDto;
-import com.deloitte.elrr.services.model.Action;
+import com.deloitte.elrr.entity.types.ActionType;
 
 @ExtendWith(MockitoExtension.class)
 class CustomPermissionEvaluatorTest {
@@ -27,15 +27,24 @@ class CustomPermissionEvaluatorTest {
     @Mock
     private AdminJwtAuthenticationToken mockAdminToken;
 
+    @Mock
+    private SecurityActionContext mockSecurityActionContext;
+
     @BeforeEach
-    void setUp() {
+    void setUp() throws Exception {
         permissionEvaluator = new CustomPermissionEvaluator();
+        
+        // Inject the mock SecurityActionContext into the permissionEvaluator
+        Field securityActionContextField = CustomPermissionEvaluator.class
+                .getDeclaredField("securityActionContext");
+        securityActionContextField.setAccessible(true);
+        securityActionContextField.set(permissionEvaluator, mockSecurityActionContext);
     }
 
     @Test
     void hasPermission_WithValidPermission_ReturnsTrue() {
         // Arrange
-        PermissionDto permission = new PermissionDto("users", null, Arrays.asList(Action.READ));
+        PermissionDto permission = new PermissionDto("users", null, Arrays.asList(ActionType.READ));
         when(mockToken.getPermissions()).thenReturn(Arrays.asList(permission));
 
         // Act
@@ -49,7 +58,7 @@ class CustomPermissionEvaluatorTest {
     @Test
     void hasPermission_WithInvalidResource_ReturnsFalse() {
         // Arrange
-        PermissionDto permission = new PermissionDto("users", null, Arrays.asList(Action.READ));
+        PermissionDto permission = new PermissionDto("users", null, Arrays.asList(ActionType.READ));
         when(mockToken.getPermissions()).thenReturn(Arrays.asList(permission));
 
         // Act
@@ -89,7 +98,7 @@ class CustomPermissionEvaluatorTest {
     @Test
     void hasPermission_WithWildcardResource_ReturnsTrue() {
         // Arrange
-        PermissionDto permission = new PermissionDto("*", null, Arrays.asList(Action.READ));
+        PermissionDto permission = new PermissionDto("*", null, Arrays.asList(ActionType.READ));
         when(mockToken.getPermissions()).thenReturn(Arrays.asList(permission));
 
         // Act

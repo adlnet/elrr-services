@@ -1,6 +1,7 @@
 package com.deloitte.elrr.services.security;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 
@@ -55,5 +56,12 @@ public class JwtAuthenticationToken extends AbstractAuthenticationToken {
      */
     public List<PermissionDto> getPermissions() {
         return jwt.getClaim("elrr_permissions").asList(PermissionDto.class);
+    }
+
+    /**
+     * @return JWT ID as UUID, or null if not present or invalid
+     */
+    public UUID getJwtId() {
+        return UUID.fromString(jwt.getId());
     }
 }

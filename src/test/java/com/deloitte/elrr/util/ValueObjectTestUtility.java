@@ -42,6 +42,7 @@ public final class ValueObjectTestUtility {
         // Register custom generators for LocalDate and LocalDateTime to avoid Java module access issues
         RandomFactory.addRandomGenerator(new LocalDateRandomGenerator());
         RandomFactory.addRandomGenerator(new LocalDateTimeRandomGenerator());
+        RandomFactory.addRandomGenerator(new ZonedDateTimeRandomGenerator());
         ACCESSOR_VALIDATOR.validate(PojoClassFactory.getPojoClass(clazz));
     }
 

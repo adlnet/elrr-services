@@ -25,7 +25,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.deloitte.elrr.services.TestAppConfig;
 import com.deloitte.elrr.services.dto.PermissionDto;
-import com.deloitte.elrr.services.model.Action;
+import com.deloitte.elrr.entity.types.ActionType;
 import com.deloitte.elrr.entity.ClientToken;
 import com.deloitte.elrr.services.security.JwtUtil;
 import com.deloitte.elrr.services.security.MethodSecurityConfig;
@@ -65,9 +65,9 @@ public class ClientTokenControllerTest extends CommonControllerTest {
     void testCreateToken() throws Exception {
         // Arrange
         PermissionDto permission1 = new PermissionDto("resource1", null,
-                Arrays.asList(Action.CREATE, Action.READ));
+                Arrays.asList(ActionType.CREATE, ActionType.READ));
         PermissionDto permission2 = new PermissionDto("resource2", null,
-                Arrays.asList(Action.UPDATE, Action.DELETE));
+                Arrays.asList(ActionType.UPDATE, ActionType.DELETE));
         List<PermissionDto> permissions =
                 Arrays.asList(permission1, permission2);
 

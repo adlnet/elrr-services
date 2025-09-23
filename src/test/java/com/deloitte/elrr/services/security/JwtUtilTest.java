@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.deloitte.elrr.services.dto.PermissionDto;
-import com.deloitte.elrr.services.model.Action;
+import com.deloitte.elrr.entity.types.ActionType;
 import org.springframework.test.util.ReflectionTestUtils;
 
 class JwtUtilTest {
@@ -31,9 +31,9 @@ class JwtUtilTest {
     void testPermissionsSerializationAndDeserialization() {
         // Arrange
         PermissionDto permission1 = new PermissionDto("resource1", null,
-                Arrays.asList(Action.CREATE, Action.READ));
+                Arrays.asList(ActionType.CREATE, ActionType.READ));
         PermissionDto permission2 = new PermissionDto("resource2", null,
-                Arrays.asList(Action.UPDATE, Action.DELETE));
+                Arrays.asList(ActionType.UPDATE, ActionType.DELETE));
         List<PermissionDto> permissions = Arrays.asList(permission1,
                 permission2);
         UUID testTokenId = UUID.randomUUID();

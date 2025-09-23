@@ -9,6 +9,7 @@ import java.util.UUID;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.http.HttpHeaders;
@@ -33,7 +34,7 @@ import com.deloitte.elrr.jpa.svc.ClientTokenSvc;
 import com.deloitte.elrr.repository.OrganizationRepository;
 import com.deloitte.elrr.services.security.JwtUtil;
 import com.deloitte.elrr.services.dto.PermissionDto;
-import com.deloitte.elrr.services.model.Action;
+import com.deloitte.elrr.entity.types.ActionType;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -146,7 +147,7 @@ class CommonControllerTest {
                 String resource = parts[0];
                 String action = parts[1];
                 permissions.add(new PermissionDto(resource, null,
-                        List.of(Action.valueOf(action))));
+                        List.of(ActionType.valueOf(action))));
             }
         }
         // TODO: we probably need to make a real entity ID here

@@ -2,7 +2,9 @@ package com.deloitte.elrr.services.security;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.core.Authentication;
@@ -11,7 +13,7 @@ import org.springframework.stereotype.Component;
 import lombok.extern.slf4j.Slf4j;
 
 import com.deloitte.elrr.services.dto.PermissionDto;
-import com.deloitte.elrr.services.model.Action;
+import com.deloitte.elrr.entity.types.ActionType;
 
 @Slf4j
 @Component
@@ -20,9 +22,24 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
     @Value("${client.admin-api-override}")
     private boolean adminApiOverride;
 
+    @Autowired
+    private SecurityActionContext securityActionContext;
+
     @Override
     public boolean hasPermission(Authentication authentication, Object resource,
             Object action) {
+        UUID jwtId;
+        if (authentication instanceof JwtAuthenticationToken) {
+            JwtAuthenticationToken token =
+                (JwtAuthenticationToken) authentication;
+            jwtId = token.getJwtId();
+        } else {
+            jwtId = null;
+        }
+        // Store data in request-scoped context for aspects
+        securityActionContext.setCurrentContext((String) action,
+                (String) resource, jwtId);
+
         if (authentication instanceof AdminJwtAuthenticationToken)
             return adminApiOverride;
 
@@ -38,7 +55,7 @@ public class CustomPermissionEvaluator implements PermissionEvaluator {
                             .equals((String) resource)
                             || permission.getResource().equals("*"))
                             && permission.getActions()
-                                .contains(Action.valueOf((String) action)));
+                                .contains(ActionType.valueOf((String) action)));
         }
         return false;
     }

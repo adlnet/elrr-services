@@ -15,7 +15,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import com.deloitte.elrr.services.model.Action;
+import com.deloitte.elrr.entity.types.ActionType;
 
 @Getter
 @Setter
@@ -31,7 +31,7 @@ public class PermissionDto {
 
     @NotNull
     @NotEmpty
-    private List<Action> actions;
+    private List<ActionType> actions;
 
     /**
      * Converts this PermissionDto to a Map representation.
