@@ -43,7 +43,7 @@ jobs:
     - name: Compress Bundle
       run: | # Get only the correct jar into the bundle
         cd elrrservices/target
-        find . -type f -regex ".*[0-9]\.jar$" -print0 | xargs -0 zip ../elrr-services.zip
+        find . -type f -regex ".*[0-9]\.jar$" -print0 | xargs -0 zip ../../elrr-services.zip
     - name: Archive Bundle (Tag Pushes)
       uses: actions/upload-artifact@v4
       with:
