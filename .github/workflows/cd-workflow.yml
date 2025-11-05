@@ -20,7 +20,7 @@ jobs:
     - name: Checkout tools repo
       uses: actions/checkout@v4
       with:
-        repository: adlnet/elrr-service-entities
+        repository: adlnet/elrr-services-entities
         path: elrrserviceentities
     - name: Maven build Entities
       run: |
