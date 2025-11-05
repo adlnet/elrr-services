@@ -31,7 +31,7 @@ jobs:
     - name: Maven build Entities
       run: |
        cd elrrserviceentities
-       echo "maven build - Clean install"
+       echo "Maven build Entities"
        mvn clean install
     
     # Services repo
@@ -42,5 +42,5 @@ jobs:
     - name: Maven build
       run: |
        cd elrrservices
-       echo "maven build - Clean install"
+       echo "Maven build Services"
        mvn clean install
