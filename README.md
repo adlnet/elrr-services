@@ -70,7 +70,7 @@ Configuration variables for running the application
 | spring.datasource.url (partly, jdbc url)  | PG_DATABASE | - | PostgreSQL Database Name
 | spring.datasource.username  | PG_RW_USER | - | PostgreSQL Username
 | spring.datasource.password  | PG_RW_PASSWORD | - | PostgreSQL Password
-| spring.jpa.properties.hibernate.default_schema  | ELRR_DB_SCHEMA | datasync_schema | Default PostgreSQL Schema
+| spring.jpa.properties.hibernate.default_schema  | ELRR_DB_SCHEMA | services_schema | Default PostgreSQL Schema
 | server.port | ELRR_SERVER_PORT | 8092 | Port to deploy API onto
 | admin.jwt.role | ELRR_ADMIN_JWT_ROLE | elrr-admin | Role expected in Admin JWT
 | admin.jwt.role-key | ELRR_ADMIN_JWT_ROLE_KEY | group-simple | Key for list of roles in Admin JWT
