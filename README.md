@@ -3,7 +3,7 @@
 
 This component of ELRR system houses the Learner API to allow the reading and writing of the P2997 data stored in ELRR Learner Profile. 
 
-There are database dependencies, but there's a [repo with a docker-compose](https://github.com/US-ELRR/elrrdockercompose/) that resolves the db locally.
+There are database dependencies, but there's a [repo with a docker-compose](https://github.com/adlnet/elrr-dockercompose) that resolves the db locally.
 
 ## API Inventory
 The API Endpoints are documented interactively by swagger/openapi. Launch the application (locally or otherwise) and go to:
