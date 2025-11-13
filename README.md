@@ -24,11 +24,11 @@ The API Endpoints are documented interactively by swagger/openapi. Launch the ap
 ### 1. Build the application
 Using `make`:
 
-`make build`
+- `make build`
 
 or use maven:
 
-`mvn clean install`
+- `mvn clean install`
 
 ### 2. Start and Configure the Database
 
@@ -43,9 +43,9 @@ This is the recommended and easiest way to run a local version of the applicatio
 
 - `mvn spring-boot:run -D spring-boot.run.profiles=local -e`  (Linux/MacOS)
 or
-`mvn spring-boot:run -D"spring-boot.run.profiles"=local -e` (Windows)
+- `mvn spring-boot:run -D"spring-boot.run.profiles"=local -e` (Windows)
 or (if you have `make` installed)
-`make dev`
+- `make dev`
 or
 - `make debug` - same but with an open debug port to attach to
 
