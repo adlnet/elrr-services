@@ -42,11 +42,17 @@ One option is to use the ELRR [Local Development Docker Compose](https://github.
 This is the recommended and easiest way to run a local version of the application
 
 - `mvn spring-boot:run -D spring-boot.run.profiles=local -e`  (Linux/MacOS)
+
 or
+
 - `mvn spring-boot:run -D"spring-boot.run.profiles"=local -e` (Windows)
+
 or (if you have `make` installed)
+
 - `make dev`
+
 or
+
 - `make debug` - same but with an open debug port to attach to
 
 
