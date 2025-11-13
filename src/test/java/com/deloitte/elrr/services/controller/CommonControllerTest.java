@@ -163,7 +163,6 @@ class CommonControllerTest {
      */
     public HttpHeaders getHeaders(String resourceActions) {
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Content-Type", " */*");
         headers.set("X-Forwarded-Proto", "https");
         headers.set("Authorization", this.getTestJwtHeader(resourceActions));
         return headers;
