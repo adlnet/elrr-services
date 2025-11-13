@@ -29,6 +29,10 @@ public class GoalDto extends ExtensibleDto {
     @Size(max = 255)
     private String name;
 
+    @NotBlank
+    @Size(max = 255)
+    private String goalId;
+
     @Size(max = 65535)
     private String description;
 

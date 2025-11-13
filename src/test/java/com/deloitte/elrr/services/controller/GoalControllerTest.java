@@ -369,6 +369,7 @@ public class GoalControllerTest extends CommonControllerTest {
     private GoalDto getGoalDto() {
         GoalDto goalDto = new GoalDto();
         goalDto.setPersonId(PERSON_ID);
+        goalDto.setGoalId("test-goal-" + UUID.randomUUID());
         goalDto.setName("Test Goal");
         goalDto.setDescription("Test Description");
         goalDto.setType(GoalType.SELF);
